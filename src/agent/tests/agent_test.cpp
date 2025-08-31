@@ -89,16 +89,10 @@ TEST_F(AgentTests, AgentStopsWhenSignalReceived)
     EXPECT_CALL(*mockHttpClient, PerformHttpRequest(testing::_))
         .WillRepeatedly(testing::Invoke([&expectedResponse]() -> intStringTuple { return expectedResponse; }));
 
-    EXPECT_CALL(*mockCommandHandlerPtr, CommandsProcessingTask(testing::_, testing::_, testing::_, testing::_))
-        .WillOnce(testing::Invoke([](auto, auto, auto, auto) -> boost::asio::awaitable<void> { co_return; }));
-
-    EXPECT_CALL(*mockCommandHandlerPtr, Stop()).Times(1);
-
     Agent agent(std::make_unique<configuration::ConfigurationParser>(m_configString),
                 std::move(mockSignalHandler),
                 std::move(mockHttpClient),
                 std::move(mockAgentInfo),
-                std::move(mockCommandHandler),
                 std::move(mockModuleManager),
                 std::move(mockInstanceCommunicator),
                 std::move(mockMultiTypeQueue));

@@ -46,7 +46,6 @@ target_link_libraries(
     Agent
     PUBLIC AgentInfo
            CentralizedConfiguration
-           CommandHandler
            Communicator
            ConfigurationParser
            HttpClient
