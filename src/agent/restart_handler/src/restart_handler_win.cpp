@@ -8,5 +8,4 @@
 
 namespace restart_handler
 {
-    return 0;
 } // namespace restart_handler
