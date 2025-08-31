@@ -28,8 +28,8 @@ runs:
     - name: Set PKG_NAME
       shell: bash
       run: |
-        VERSION=$(curl -s "https://raw.githubusercontent.com/wazuh/wazuh-agent/${{ inputs.source_reference }}/VERSION.json" | sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
-        COMMIT_HASH="$(curl -s "https://api.github.com/repos/wazuh/wazuh-agent/branches/${{ inputs.source_reference }}" | grep '"sha"' | head -1 | sed 's/.*: "\(.*\)",/\1/' | cut -c1-7)"
+        VERSION=$(curl -s "https://raw.githubusercontent.com/smirta/wazuh-agent/${{ inputs.source_reference }}/VERSION.json" | sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
+        COMMIT_HASH="$(curl -s "https://api.github.com/repos/smirta/wazuh-agent/branches/${{ inputs.source_reference }}" | grep '"sha"' | head -1 | sed 's/.*: "\(.*\)",/\1/' | cut -c1-7)"
         if [ "${{ inputs.is_stage }}" == "true" ]; then
           echo "PKG_NAME=wazuh-agent-${VERSION}-${{ inputs.revision }}" >> $GITHUB_ENV
         else

@@ -78,8 +78,8 @@ fi
 
 # Download source code if it is not shared from the local host
 if [ ! -d "/wazuh-local-src" ] ; then
-  git clone --branch ${WAZUH_BRANCH} --single-branch https://github.com/wazuh/wazuh-agent.git
-  short_commit_hash="$(curl -s https://api.github.com/repos/wazuh/wazuh-agent/commits/${WAZUH_BRANCH} \
+  git clone --branch ${WAZUH_BRANCH} --single-branch https://github.com/smirta/wazuh-agent.git
+  short_commit_hash="$(curl -s https://api.github.com/repos/smirta/wazuh-agent/commits/${WAZUH_BRANCH} \
                           | grep '"sha"' | head -n 1| cut -d '"' -f 4 | cut -c 1-7)"
 else
   short_commit_hash="$(cd /wazuh-local-src && git rev-parse --short=7 HEAD)"

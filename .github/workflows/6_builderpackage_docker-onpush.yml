@@ -32,7 +32,7 @@ on:
           - aarch64
       source_reference:
         description: |
-          Branch from wazuh/wazuh-agent repository to use.
+          Branch from smirta/wazuh-agent repository to use.
         required: true
 
 jobs:
@@ -42,10 +42,10 @@ jobs:
     timeout-minutes: 240
 
     steps:
-      - name: Checkout wazuh/wazuh-agent repository
+      - name: Checkout smirta/wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
 
       - name: Set ARCH

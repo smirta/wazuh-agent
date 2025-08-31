@@ -170,11 +170,11 @@ $ ./generate_wazuh_msi.ps1 -MSI_NAME wazuh-agent_6.0.0-0_windows_0ceb378 -SIGN n
 
 Packages can also be built using GHA Workflows from the GitHub interface which let manually set every available field as seen in the following links:
 
-[Linux Packages WF](https://github.com/wazuh/wazuh-agent/actions/workflows/5_builderpackage_agent-linux.yml)
+[Linux Packages WF](https://github.com/smirta/wazuh-agent/actions/workflows/5_builderpackage_agent-linux.yml)
 
-[Mac OS Packages WF](https://github.com/wazuh/wazuh-agent/actions/workflows/5_builderpackage_agent-macos.yml)
+[Mac OS Packages WF](https://github.com/smirta/wazuh-agent/actions/workflows/5_builderpackage_agent-macos.yml)
 
-[Windows Packages WF](https://github.com/wazuh/wazuh-agent/actions/workflows/5_builderpackage_agent-win.yml)
+[Windows Packages WF](https://github.com/smirta/wazuh-agent/actions/workflows/5_builderpackage_agent-win.yml)
 
 This workflows can be run using the GitHub web interface, by clicking the `Run workflow` or requesting them to be run using API calls or using the GitHub CLI. Each available for option for all dispatchable workflow is descripted in the input field of the GitHub web interface.
 
@@ -183,7 +183,7 @@ Following are some examples of related dispatchable workflows.
 ## Generate and push builder images to GH (Linux packages)
 
 ```bash
-curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_WORKFLOW_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" --data-binary "@$(pwd)/wazuh-agent-test-amd64-rpm.json" "https://api.github.com/repos/wazuh/wazuh-agent/actions/workflows/packages-upload-images.yml/dispatches"
+curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_WORKFLOW_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" --data-binary "@$(pwd)/wazuh-agent-test-amd64-rpm.json" "https://api.github.com/repos/smirta/wazuh-agent/actions/workflows/packages-upload-images.yml/dispatches"
 ```
 
 Where the JSON looks like this:
@@ -206,7 +206,7 @@ Where the JSON looks like this:
 ## Generate packages
 
 ```bash
-curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_WORKFLOW_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" --data-binary "@$(pwd)/wazuh-agent-test-amd64-rpm.json" "https://api.github.com/repos/wazuh/wazuh-agent/actions/workflows/packages-build-linux-agent.yml/dispatches"
+curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_WORKFLOW_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" --data-binary "@$(pwd)/wazuh-agent-test-amd64-rpm.json" "https://api.github.com/repos/smirta/wazuh-agent/actions/workflows/packages-build-linux-agent.yml/dispatches"
 ```
 
 Where the JSON looks like this:

@@ -9,7 +9,7 @@ inputs:
     required: false
     default: 'auto'
   source_reference:
-    description: 'Branch from wazuh/wazuh-agent repository to use.'
+    description: 'Branch from smirta/wazuh-agent repository to use.'
     required: true
   system:
     description: 'Package system [deb,rpm]'

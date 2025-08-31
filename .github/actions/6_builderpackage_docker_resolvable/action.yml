@@ -11,7 +11,7 @@ inputs:
     description: 'Requested Docker image tag'
     required: true
   source_reference:
-    description: 'Branch from wazuh/wazuh-agent repository to use.'
+    description: 'Branch from smirta/wazuh-agent repository to use.'
     required: true
 runs:
   using: 'composite'

@@ -63,7 +63,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 

@@ -49,7 +49,7 @@ on:
         required: false
       source_reference:
         description: |
-          Branch from wazuh/wazuh-agent repository to use.
+          Branch from smirta/wazuh-agent repository to use.
         required: true
       upload_to_s3:
         type: boolean
@@ -116,7 +116,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 
@@ -139,7 +139,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 
@@ -166,7 +166,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 
@@ -196,7 +196,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 
@@ -220,7 +220,7 @@ jobs:
       - name: Checkout the wazuh-agent repository
         uses: actions/checkout@v4
         with:
-          repository: wazuh/wazuh-agent
+          repository: smirta/wazuh-agent
           ref: ${{ inputs.source_reference }}
           persist-credentials: false
 

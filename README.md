@@ -29,7 +29,7 @@ To install the Wazuh Agent, follow the steps below:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/wazuh/wazuh-agent.git
+    git clone https://github.com/smirta/wazuh-agent.git
     cd wazuh-agent
     ```
 2. Use one of the following options:

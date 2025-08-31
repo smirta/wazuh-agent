@@ -7,7 +7,7 @@
     First, clone the repository using the following command:
 
     ```bash
-    git clone https://github.com/wazuh/wazuh-agent.git
+    git clone https://github.com/smirta/wazuh-agent.git
     ```
 
 2. **Vcpkg**
@@ -29,7 +29,7 @@
     First, clone the repository using the following command:
 
     ```bash
-    git clone https://github.com/wazuh/wazuh-agent.git
+    git clone https://github.com/smirta/wazuh-agent.git
     ```
 
 2. **Vcpkg**
