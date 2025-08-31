@@ -54,7 +54,6 @@ target_link_libraries(
     PUBLIC ModuleManager
            ConfigurationParser
            MessageEntry
-           CommandEntry
            string_helper
            time_helper
            Boost::asio

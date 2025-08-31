@@ -19,7 +19,6 @@ target_link_libraries(
     PUBLIC ModuleManager
            ConfigurationParser
            MessageEntry
-           CommandEntry
            dbsync
            sysinfo
            hash_helper

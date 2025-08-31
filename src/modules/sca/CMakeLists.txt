@@ -33,7 +33,6 @@ target_link_libraries(
            ConfigurationParser
            MessageEntry
            ModuleManager
-           CommandEntry
            cmd_helper
     PRIVATE PCRE2::8BIT hash_helper string_helper time_helper $<$<PLATFORM_ID:Windows>:registry_helper>)
 

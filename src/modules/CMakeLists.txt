@@ -35,7 +35,7 @@ if(ENABLE_SCA)
 endif()
 
 target_link_libraries(ModuleManager PUBLIC Boost::asio nlohmann_json::nlohmann_json TaskManager ConfigurationParser
-                                           MessageEntry CommandEntry PRIVATE Logger)
+                                           MessageEntry PRIVATE Logger)
 
 include(../cmake/ConfigureTarget.cmake)
 configure_target(ModuleManager)
