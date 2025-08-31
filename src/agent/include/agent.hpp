@@ -4,7 +4,6 @@
 #include <communicator.hpp>
 #include <configuration_parser.hpp>
 #include <iagent_info.hpp>
-#include <icommand_handler.hpp>
 #include <ihttp_client.hpp>
 #include <iinstance_communicator.hpp>
 #include <imoduleManager.hpp>
@@ -23,7 +22,7 @@
 /// @brief Agent class
 ///
 /// This class handles the configuration, communication with the manager,
-/// command handling, task management, and module management.
+/// task management, and module management.
 class Agent
 {
 public:
@@ -32,7 +31,6 @@ public:
     /// @param signalHandler Pointer to a custom ISignalHandler implementation
     /// @param httpClient Pointer to an IHttpClient implementation
     /// @param agentInfo Pointer to a custom IAgentInfo implementation
-    /// @param commandHandler Pointer to a custom ICommandHandler implementation
     /// @param moduleManager Pointer to a custom IModuleManager implementation
     /// @param instanceCommunicator Pointer to a custom IInstanceCommunicator implementation
     /// @param messageQueue Pointer to a custom IMultiTypeQueue implementation
@@ -43,7 +41,6 @@ public:
           std::unique_ptr<ISignalHandler> signalHandler = std::make_unique<SignalHandler>(),
           std::unique_ptr<http_client::IHttpClient> httpClient = nullptr,
           std::unique_ptr<IAgentInfo> agentInfo = nullptr,
-          std::unique_ptr<command_handler::ICommandHandler> commandHandler = nullptr,
           std::unique_ptr<IModuleManager> moduleManager = nullptr,
           std::unique_ptr<instance_communicator::IInstanceCommunicator> instanceCommunicator = nullptr,
           std::shared_ptr<IMultiTypeQueue> messageQueue = nullptr);
@@ -86,9 +83,6 @@ private:
 
     /// @brief Module manager
     std::unique_ptr<IModuleManager> m_moduleManager;
-
-    /// @brief Command handler
-    std::unique_ptr<command_handler::ICommandHandler> m_commandHandler;
 
     /// @brief Instance communicator
     std::unique_ptr<instance_communicator::IInstanceCommunicator> m_instanceCommunicator;

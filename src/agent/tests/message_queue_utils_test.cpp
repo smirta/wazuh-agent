@@ -1,6 +1,5 @@
 #include <message_queue_utils.hpp>
 
-#include <command_entry.hpp>
 #include <message.hpp>
 
 #include <mock_multitype_queue.hpp>
@@ -184,8 +183,6 @@ TEST_F(MessageQueueUtilsTest, GetCommandFromQueueTest)
     ASSERT_EQ(cmd.has_value() ? cmd.value().Command : "", "command_test");
     ASSERT_EQ(cmd.has_value() ? cmd.value().Parameters : nlohmann::json::object({"{}"}),
               R"({"parameters":["parameters_test"]})"_json);
-    ASSERT_EQ(cmd.has_value() ? cmd.value().ExecutionResult.ErrorCode : module_command::Status::UNKNOWN,
-              module_command::Status::IN_PROGRESS);
 }
 
 int main(int argc, char** argv)

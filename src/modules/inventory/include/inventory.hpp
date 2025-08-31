@@ -14,7 +14,6 @@
 #include <inventoryNormalizer.hpp>
 #include <sysInfoInterface.hpp>
 
-#include <command_entry.hpp>
 #include <imodule.hpp>
 #include <message.hpp>
 
@@ -39,9 +38,6 @@ public:
 
     /// @copydoc IModule::Stop
     void Stop() override;
-
-    /// @copydoc IModule::ExecuteCommand
-    Co_CommandExecutionResult ExecuteCommand(const std::string command, const nlohmann::json parameters) override;
 
     /// @copydoc IModule::Name
     const std::string& Name() const override;

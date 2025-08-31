@@ -1,6 +1,5 @@
 #pragma once
 
-#include <command_entry.hpp>
 #include <imodule.hpp>
 #include <message.hpp>
 #include <task_manager.hpp>

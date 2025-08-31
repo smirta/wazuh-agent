@@ -1,9 +1,6 @@
 #include <agent.hpp>
 
 #include <agent_info.hpp>
-#include <command_entry.hpp>
-#include <command_handler.hpp>
-#include <command_handler_utils.hpp>
 #include <config.h>
 #include <http_client.hpp>
 #include <instance_communicator.hpp>
@@ -22,7 +19,6 @@ Agent::Agent(std::unique_ptr<configuration::ConfigurationParser> configurationPa
              std::unique_ptr<ISignalHandler> signalHandler,
              std::unique_ptr<http_client::IHttpClient> httpClient,
              std::unique_ptr<IAgentInfo> agentInfo,
-             std::unique_ptr<command_handler::ICommandHandler> commandHandler,
              std::unique_ptr<IModuleManager> moduleManager,
              std::unique_ptr<instance_communicator::IInstanceCommunicator> instanceCommunicator,
              std::shared_ptr<IMultiTypeQueue> messageQueue)
@@ -46,8 +42,6 @@ Agent::Agent(std::unique_ptr<configuration::ConfigurationParser> configurationPa
                                                             { return m_messageQueue->push(std::move(message)); },
                                                             m_configurationParser,
                                                             m_agentInfo->GetUUID()))
-    , m_commandHandler(commandHandler ? std::move(commandHandler)
-                                      : std::make_unique<command_handler::CommandHandler>(m_configurationParser))
     , m_instanceCommunicator(instanceCommunicator
                                  ? std::move(instanceCommunicator)
                                  : std::make_unique<instance_communicator::InstanceCommunicator>(
@@ -171,31 +165,6 @@ void Agent::Run()
     m_moduleManager->AddModules();
     m_moduleManager->Start();
 
-    m_taskManager.EnqueueTask(
-        m_commandHandler->CommandsProcessingTask(
-            [this]() { return GetCommandFromQueue(m_messageQueue); },
-            [this]() { return PopCommandFromQueue(m_messageQueue); },
-            [this](const module_command::CommandEntry& cmd) { return ReportCommandResult(cmd, m_messageQueue); },
-            [this](module_command::CommandEntry& cmd)
-            {
-                if (cmd.Module == module_command::CENTRALIZED_CONFIGURATION_MODULE)
-                {
-                    return DispatchCommand(
-                        cmd,
-                        [this](std::string command, nlohmann::json parameters) {
-                            return m_centralizedConfiguration.ExecuteCommand(std::move(command), std::move(parameters));
-                        },
-                        m_messageQueue);
-                }
-                else if (cmd.Module == module_command::RESTART_HANDLER_MODULE)
-                {
-                    LogInfo("Restart: Initiating restart");
-                    return restart_handler::RestartHandler::RestartAgent();
-                }
-                return DispatchCommand(cmd, m_moduleManager->GetModule(cmd.Module), m_messageQueue);
-            }),
-        "CommandsProcessing");
-
     {
         const std::unique_lock<std::mutex> lock(m_reloadMutex);
         m_running.store(true);
@@ -214,7 +183,6 @@ void Agent::Run()
 
     LogInfo("Stopping agent...");
 
-    m_commandHandler->Stop();
     m_communicator.Stop();
     m_moduleManager->Stop();
     m_instanceCommunicator->Stop();

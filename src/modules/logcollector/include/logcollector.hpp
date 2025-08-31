@@ -1,6 +1,5 @@
 #pragma once
 
-#include <command_entry.hpp>
 #include <imodule.hpp>
 #include <message.hpp>
 #include <task_manager.hpp>
@@ -42,9 +41,6 @@ namespace logcollector
 
         /// @copydoc IModule::Stop
         void Stop() override;
-
-        /// @copydoc IModule::ExecuteCommand
-        Co_CommandExecutionResult ExecuteCommand(const std::string command, const nlohmann::json parameters) override;
 
         /// @copydoc IModule::Name
         const std::string& Name() const override;

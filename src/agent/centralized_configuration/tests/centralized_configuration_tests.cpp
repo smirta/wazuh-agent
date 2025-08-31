@@ -25,7 +25,6 @@ namespace
     boost::asio::awaitable<void> TestExecuteCommand(CentralizedConfiguration& centralizedConfiguration,
                                                     const std::string& command,
                                                     const nlohmann::json& parameters,
-                                                    module_command::Status expectedErrorCode,
                                                     const std::string& expectedMessage)
     {
         const auto commandResult = co_await centralizedConfiguration.ExecuteCommand(command, parameters);
@@ -125,7 +124,6 @@ TEST(CentralizedConfiguration, ExecuteCommandReturnsFailureOnUnrecognizedCommand
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "unknown-command",
                                         {},
-                                        module_command::Status::FAILURE,
                                         "CentralizedConfiguration command not recognized");
         }(),
         boost::asio::detached);
@@ -152,14 +150,12 @@ TEST(CentralizedConfiguration, ExecuteCommandReturnsFailureOnParseParameters)
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "set-group",
                                         parameterListCase1,
-                                        module_command::Status::FAILURE,
                                         "CentralizedConfiguration error while parsing parameters");
 
             const nlohmann::json parameterListCase2 = nlohmann::json::parse(R"({"wrongKey":["group1", "group2"]})");
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "set-group",
                                         parameterListCase2,
-                                        module_command::Status::FAILURE,
                                         "CentralizedConfiguration error while parsing parameters");
 
             const nlohmann::json parameterListCase3 = nlohmann::json::parse(R"({"groups":["", "group2"]})");
@@ -167,7 +163,6 @@ TEST(CentralizedConfiguration, ExecuteCommandReturnsFailureOnParseParameters)
                 centralizedConfiguration,
                 "set-group",
                 parameterListCase3,
-                module_command::Status::FAILURE,
                 "CentralizedConfiguration group set failed, a group name can not be an empty string.");
         }(),
         boost::asio::detached);
@@ -207,19 +202,16 @@ TEST(CentralizedConfiguration, ExecuteCommandHandlesRecognizedCommands)
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "set-group",
                                         groupsList,
-                                        module_command::Status::SUCCESS,
                                         "CentralizedConfiguration set-group done.");
 
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "fetch-config",
                                         {},
-                                        module_command::Status::SUCCESS,
                                         "CentralizedConfiguration fetch-config done.");
 
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "unknown-command",
                                         {},
-                                        module_command::Status::FAILURE,
                                         "CentralizedConfiguration command not recognized");
         }(),
         boost::asio::detached);
@@ -275,7 +267,6 @@ TEST(CentralizedConfiguration, SetFunctionsAreCalledAndReturnsCorrectResultsForS
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "set-group",
                                         groupsList,
-                                        module_command::Status::SUCCESS,
                                         "CentralizedConfiguration set-group done.");
 
             EXPECT_TRUE(wasSetGroupIdFunctionCalled);
@@ -332,7 +323,6 @@ TEST(CentralizedConfiguration, SetFunctionsAreCalledAndReturnsCorrectResultsForU
             co_await TestExecuteCommand(centralizedConfiguration,
                                         "fetch-config",
                                         {},
-                                        module_command::Status::SUCCESS,
                                         "CentralizedConfiguration fetch-config done.");
 
             EXPECT_TRUE(wasGetGroupIdFunctionCalled);

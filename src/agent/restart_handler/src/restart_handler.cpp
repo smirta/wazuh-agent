@@ -4,17 +4,5 @@
 
 namespace restart_handler
 {
-    boost::asio::awaitable<module_command::CommandExecutionResult> RestartHandler::RestartAgent()
-    {
-        LogInfo("Restarting wazuh-agent");
-
-        if (RunningAsService())
-        {
-            return RestartService();
-        }
-        else
-        {
-            return RestartForeground();
-        }
-    }
+    return 0;
 } // namespace restart_handler

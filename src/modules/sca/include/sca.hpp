@@ -2,7 +2,6 @@
 
 #include <isca_policy.hpp>
 
-#include <command_entry.hpp>
 #include <configuration_parser.hpp>
 #include <idbsync.hpp>
 #include <ifilesystem_wrapper.hpp>
@@ -48,9 +47,6 @@ public:
 
     /// @copydoc IModule::Stop
     void Stop() override;
-
-    /// @copydoc IModule::ExecuteCommand
-    Co_CommandExecutionResult ExecuteCommand(const std::string command, const nlohmann::json parameters) override;
 
     /// @copydoc IModule::Name
     const std::string& Name() const override;

@@ -13,10 +13,6 @@ public:
     MOCK_METHOD(void, Run, (), (override));
     MOCK_METHOD(void, Setup, (std::shared_ptr<const configuration::ConfigurationParser>), (override));
     MOCK_METHOD(void, Stop, (), (override));
-    MOCK_METHOD(boost::asio::awaitable<module_command::CommandExecutionResult>,
-                ExecuteCommand,
-                (const std::string, const nlohmann::json),
-                (override));
     MOCK_METHOD(const std::string&, Name, (), (const override));
     MOCK_METHOD(void, SetPushMessageFunction, (const std::function<int(Message)>&), (override));
 

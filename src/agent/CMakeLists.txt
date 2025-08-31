@@ -7,7 +7,6 @@ set_common_settings()
 
 add_subdirectory(agent_info)
 add_subdirectory(centralized_configuration)
-add_subdirectory(command_handler)
 add_subdirectory(communicator)
 add_subdirectory(configuration_parser)
 add_subdirectory(http_client)
@@ -34,7 +33,6 @@ list(
     src/agent.cpp
     src/agent_enrollment.cpp
     src/agent_runner.cpp
-    src/command_handler_utils.cpp
     src/message_queue_utils.cpp
     src/signal_handler.cpp
     src/instance_handler.cpp)

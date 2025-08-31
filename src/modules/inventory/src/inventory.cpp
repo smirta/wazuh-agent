@@ -80,23 +80,6 @@ void Inventory::Stop()
     m_cv.notify_all();
 }
 
-// NOLINTNEXTLINE(performance-unnecessary-value-param)
-Co_CommandExecutionResult Inventory::ExecuteCommand(const std::string command, const nlohmann::json)
-{
-    if (!m_enabled)
-    {
-        LogInfo("Inventory module is disabled.");
-        co_return module_command::CommandExecutionResult {module_command::Status::FAILURE, "Module is disabled"};
-    }
-    else if (m_stopping)
-    {
-        LogInfo("Inventory module is stopped.");
-        co_return module_command::CommandExecutionResult {module_command::Status::FAILURE, "Module is stopped"};
-    }
-    LogInfo("Command: {}", command);
-    co_return module_command::CommandExecutionResult {module_command::Status::SUCCESS, "Command not implemented yet"};
-}
-
 const std::string& Inventory::Name() const
 {
     return m_moduleName;

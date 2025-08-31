@@ -116,20 +116,6 @@ void SecurityConfigurationAssessment::Stop()
     LogInfo("SCA module stopped.");
 }
 
-Co_CommandExecutionResult
-SecurityConfigurationAssessment::ExecuteCommand([[maybe_unused]] const std::string command,
-                                                [[maybe_unused]] const nlohmann::json parameters)
-{
-    if (!m_enabled)
-    {
-        LogInfo("SCA module is disabled.");
-        co_return module_command::CommandExecutionResult {module_command::Status::FAILURE, "Module is disabled"};
-    }
-
-    LogInfo("Command: {}", command);
-    co_return module_command::CommandExecutionResult {module_command::Status::SUCCESS, "Command not implemented yet"};
-}
-
 const std::string& SecurityConfigurationAssessment::Name() const
 {
     return m_name;

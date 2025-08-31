@@ -6,7 +6,6 @@
 #include <gtest/gtest.h>
 #include <isignal_handler.hpp>
 #include <mock_agent_info.hpp>
-#include <mock_command_handler.hpp>
 #include <mock_http_client.hpp>
 #include <mock_instance_communicator.hpp>
 #include <mock_module_manager.hpp>
@@ -56,9 +55,6 @@ TEST_F(AgentTests, AgentStopsWhenSignalReceived)
     MockSignalHandler* mockSignalHandlerPtr = mockSignalHandler.get();
 
     auto mockHttpClient = std::make_unique<MockHttpClient>();
-
-    auto mockCommandHandler = std::make_unique<command_handler::MockCommandHandler>();
-    command_handler::MockCommandHandler* mockCommandHandlerPtr = mockCommandHandler.get();
 
     auto mockMultiTypeQueue = std::make_shared<MockMultiTypeQueue>();
 
