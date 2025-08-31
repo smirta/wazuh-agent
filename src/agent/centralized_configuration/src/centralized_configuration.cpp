@@ -12,20 +12,6 @@
 
 namespace
 {
-    std::string CreateTmpFilename()
-    {
-        constexpr int MIN_VALUE = 1000;
-        constexpr int MAX_VALUE = 9999;
-        std::random_device rd;
-        std::mt19937 generator(rd());
-        std::uniform_int_distribution<int> distribution(MIN_VALUE, MAX_VALUE);
-        const int random = distribution(generator);
-
-        auto now = std::chrono::high_resolution_clock::now();
-        auto timestamp = now.time_since_epoch().count();
-
-        return std::to_string(timestamp) + "_" + std::to_string(random);
-    }
 } // namespace
 
 namespace centralized_configuration
