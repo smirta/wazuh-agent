@@ -56,7 +56,7 @@ namespace
 
 AgentRunner::AgentRunner(int argc, char* argv[])
 {
-    restart_handler::RestartHandler::SetCommandLineArguments(argc, argv);
+    //restart_handler::RestartHandler::SetCommandLineArguments(argc, argv);
     ParseOptions(argc, argv);
 }
 
